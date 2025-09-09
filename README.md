@@ -24,3 +24,4 @@ This is a complete full-stack application with automated CI/CD pipeline using Je
 - Production: http://<minikube-ip>:30002
 
 ## Created by setup script with Docker Hub user: sanat6
+test
