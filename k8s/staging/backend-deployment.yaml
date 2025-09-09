@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-backend
+  namespace: sample-app-staging
+  labels:
+    app: sample-backend
+    environment: staging
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-backend
+  template:
+    metadata:
+      labels:
+        app: sample-backend
+    spec:
+      containers:
+      - name: backend
+        image: docker.io/sanat6/sample-backend:latest
+        ports:
+        - containerPort: 3001
+        env:
+        - name: NODE_ENV
+          value: "staging"
+        - name: PORT
+          value: "3001"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3001
+          initialDelaySeconds: 5
+          periodSeconds: 5

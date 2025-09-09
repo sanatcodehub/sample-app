@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-frontend
+  namespace: sample-app-staging
+  labels:
+    app: sample-frontend
+    environment: staging
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-frontend
+  template:
+    metadata:
+      labels:
+        app: sample-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: docker.io/sanat6/sample-frontend:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://sample-backend-service.sample-app-staging.svc.cluster.local:3001"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
