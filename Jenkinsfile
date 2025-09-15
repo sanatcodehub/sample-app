@@ -6,7 +6,7 @@ pipeline {
         DOCKER_USERNAME = 'sanatcodehub'
         IMAGE_TAG = "${env.BUILD_NUMBER}-${env.GIT_COMMIT.take(8)}"
         KUBECONFIG = credentials('kubeconfig')
-        DOCKER_CREDENTIALS = credentials('dockerhub-cred')
+        DOCKER_CREDENTIALS = credentials('dockerhub-creds')
     }
     
     stages {
