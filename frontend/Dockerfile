@@ -26,7 +26,7 @@ RUN chown -R nginx:nginx /usr/share/nginx/html \
 USER nginx
 
 # Expose port
-EXPOSE 3000
+EXPOSE 80
 
 # Healthcheck
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
