@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOCKER_REGISTRY = 'docker.io'
-        DOCKER_USERNAME = 'sanatcodehub'
+        DOCKER_USERNAME = 'sanat6'
         IMAGE_TAG = "${env.BUILD_NUMBER}-${env.GIT_COMMIT.take(8)}"
         KUBECONFIG = credentials('kubeconfig')
         DOCKER_CREDENTIALS = credentials('dockerhub-creds')
