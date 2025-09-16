@@ -25,7 +25,8 @@ spec:
   selector:
     app: sample-frontend
   ports:
-  - port: 3000
-    targetPort: 3000
+  - port: 80       # ✅ changed from 3000
+    targetPort: 80 # ✅ changed from 3000
     nodePort: 30002
   type: NodePort
+

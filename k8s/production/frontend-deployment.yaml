@@ -20,19 +20,19 @@ spec:
       - name: frontend
         image: docker.io/sanat6/sample-frontend:latest
         ports:
-        - containerPort: 3000
+        - containerPort: 80
         env:
         - name: REACT_APP_API_URL
           value: "http://sample-backend-service.sample-app-production.svc.cluster.local:3001"
         livenessProbe:
           httpGet:
             path: /health
-            port: 3000
+            port: 80
           initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /health
-            port: 3000
+            port: 80
           initialDelaySeconds: 5
           periodSeconds: 5
